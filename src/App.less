@@ -1,21 +1,24 @@
 @model: linear-gradient(148deg, #f00, transparent 2px), linear-gradient(45deg, pink 0px, transparent 3px);
+@300:  309px 300px;
+@309: 309px;
+@150: 150px;
+@10: 10px;
 
 .App {
   background-color: black;
-  height: 100vmax;
+  height: 100rem;
 }
 
 .box {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  display: inline-block;
-  top: 300px;
-  left: 300px;
+  margin-top: 140px;
+  margin-left: 140px;
+  position: fixed;
+  width: @300;
+  height: @300;
   background: @model;
-  background-size: 10px 10px;
+  background-size: @10 @10;
   transform: rotate(45deg);
-  border-radius: 10px;
+  border-radius: @10;
   animation-name: move;
   animation-duration: 3s;
   animation-iteration-count: infinite;
@@ -26,32 +29,34 @@
     border-radius: 300px 0 0 300px;
     content: "";
     display: inline-block;
-    width: 150px;
-    height: 300px;
+    width: @150;
+    height: @300;
     background: @model;
-    background-size: 10px 10px;
+    background-size: @10 @10;
   }
 
   &::before {
     position: absolute;
-    top: -150px;
-    left: -10px;
+    top: -@150;
+    left: -@10;
     border-radius: 300px 300px 0 0;
     content: "";
 
-    width: 309px;
-    height: 150px;
+    width: @309;
+    height: @150;
     background: @model;
-    background-size: 10px 10px;
+    background-size: @10 @10;
   }
 }
+
 .box:nth-child(2) {
-  left: 0px;
+
   animation-name: move;
   animation-delay: 0.5s;
 }
+
 .box:nth-child(3) {
-  left: -300px;
+
   animation-name: move;
   animation-delay: 1s;
 }
