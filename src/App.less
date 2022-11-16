@@ -1,64 +1,83 @@
 @model: linear-gradient(148deg, #f00, transparent 2px), linear-gradient(45deg, pink 0px, transparent 3px);
-@300:  309px 300px;
+@300: 300px;
 @309: 309px;
 @150: 150px;
 @10: 10px;
 
 .App {
-  background-color: black;
   height: 100rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7e7f0;
+  // background-color: black;
 }
 
-.box {
-  margin-top: 140px;
-  margin-left: 140px;
-  position: fixed;
+.content {
   width: @300;
   height: @300;
-  background: @model;
-  background-size: @10 @10;
-  transform: rotate(45deg);
-  border-radius: @10;
-  animation-name: move;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
 
-  &::after {
-    position: absolute;
-    left: -150px;
-    border-radius: 300px 0 0 300px;
-    content: "";
-    display: inline-block;
-    width: @150;
+  .box {
+    // margin-top: 140px;
+    width: @300;
     height: @300;
     background: @model;
     background-size: @10 @10;
+    transform: rotate(45deg);
+    border-radius: @10;
+    animation-name: move;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+
+    &::after {
+      position: absolute;
+      left: -150px;
+      border-radius: 300px 0 0 300px;
+      content: "";
+      display: inline-block;
+      width: @150;
+      height: @300;
+      background: @model;
+      background-size: @10 @10;
+    }
+
+    &::before {
+      position: absolute;
+      top: -@150;
+      left: -@10;
+      border-radius: 300px 300px 0 0;
+      content: "";
+      width: @309;
+      height: @150;
+      background: @model;
+      background-size: @10 @10;
+    }
   }
 
-  &::before {
-    position: absolute;
-    top: -@150;
-    left: -@10;
-    border-radius: 300px 300px 0 0;
-    content: "";
-
-    width: @309;
-    height: @150;
-    background: @model;
-    background-size: @10 @10;
+  .box:nth-child(1) {
+    z-index: 100;
+    animation-name: move;
   }
-}
 
-.box:nth-child(2) {
+  .box:nth-child(2) {
+    z-index: 100;
+    margin-top: -300px;
+    animation-name: move;
+    animation-delay: 0.5s;
+  }
 
-  animation-name: move;
-  animation-delay: 0.5s;
-}
+  .box:nth-child(3) {
+    margin-top: -300px;
+    animation-name: move;
+    animation-delay: 1s;
+  }
 
-.box:nth-child(3) {
+  .box:nth-child(4) {
+    margin-top: -300px;
+    animation-name: move;
+    animation-delay: 1.5s;
+  }
 
-  animation-name: move;
-  animation-delay: 1s;
 }
 
 //定义动画

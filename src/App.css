@@ -1,13 +1,17 @@
 .App {
-  background-color: black;
   height: 100rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7e7f0;
 }
-.box {
-  margin-top: 140px;
-  margin-left: 140px;
-  position: fixed;
-  width: 309px 300px;
-  height: 309px 300px;
+.content {
+  width: 300px;
+  height: 300px;
+}
+.content .box {
+  width: 300px;
+  height: 300px;
   background: linear-gradient(148deg, #f00, transparent 2px), linear-gradient(45deg, pink 0px, transparent 3px);
   background-size: 10px 10px;
   transform: rotate(45deg);
@@ -16,18 +20,18 @@
   animation-duration: 3s;
   animation-iteration-count: infinite;
 }
-.box::after {
+.content .box::after {
   position: absolute;
   left: -150px;
   border-radius: 300px 0 0 300px;
   content: "";
   display: inline-block;
   width: 150px;
-  height: 309px 300px;
+  height: 300px;
   background: linear-gradient(148deg, #f00, transparent 2px), linear-gradient(45deg, pink 0px, transparent 3px);
   background-size: 10px 10px;
 }
-.box::before {
+.content .box::before {
   position: absolute;
   top: -150px;
   left: -10px;
@@ -38,13 +42,25 @@
   background: linear-gradient(148deg, #f00, transparent 2px), linear-gradient(45deg, pink 0px, transparent 3px);
   background-size: 10px 10px;
 }
-.box:nth-child(2) {
+.content .box:nth-child(1) {
+  z-index: 100;
+  animation-name: move;
+}
+.content .box:nth-child(2) {
+  z-index: 100;
+  margin-top: -300px;
   animation-name: move;
   animation-delay: 0.5s;
 }
-.box:nth-child(3) {
+.content .box:nth-child(3) {
+  margin-top: -300px;
   animation-name: move;
   animation-delay: 1s;
+}
+.content .box:nth-child(4) {
+  margin-top: -300px;
+  animation-name: move;
+  animation-delay: 1.5s;
 }
 @keyframes move {
   0% {

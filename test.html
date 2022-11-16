@@ -2,31 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/love.svg" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-    <title>温馨(づ｡◕‿‿◕｡)づ</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
     <style>
-      span::before {
-        content: "";
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background: url(./src/assets/love.svg);
-        background-size: cover;
+      body {
+        overflow: hidden;
+        margin: 0;
+      }
+
+      h1 {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        transform: translateY(-50%);
+        font-family: "Love Ya Like A Sister", cursive;
+        font-size: 40px;
+        color: #c70012;
+        padding: 0 20px;
+      }
+
+      @media (min-width: 1200px) {
+        h1 {
+          font-size: 60px;
+        }
+
+        h1 a {
+          text-decoration: none;
+          color: #000;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div id="root">
-      <canvas />
-    </div>
-    <script type="module" src="/src/main.tsx"></script>
+    <canvas></canvas>
+    
+
     <script>
+      let canvas = document.querySelector("canvas");
+      let ctx = canvas.getContext("2d");
+
+      let width, height;
+
+      ctx.strokeStyle = "red";
+      ctx.shadowBlur = 25;
+      ctx.shadowColor = "hsla(0, 100%, 60%,0.5)";
+
+      onResize();
+      requestAnimationFrame(render);
+
       let precision = 100;
+
       class Heart {
         constructor(x, y) {
-          this.x = x;
-          this.y = y;
+          this.x = x || Math.random() * width;
+          this.y = y || Math.random() * height;
           this.size = Math.random() * 2 + 1;
           this.shadowBlur = Math.random() * 10;
           this.speedX = (Math.random() + 0.2 - 0.6) * 8;
@@ -71,23 +104,22 @@
           ctx.restore();
         }
       }
-      const ctx = document.querySelector("canvas").getContext("2d");
-      ctx.strokeStyle = "red";
-      ctx.shadowBlur = 25;
-      ctx.shadowColor = "hsla(0, 100%, 60%,0.5)";
-      let width, height;
-      // requestAnimationFrame(render);
+
       function onMove(e) {
         hearts.push(new Heart(e.clientX, e.clientY));
         hearts.push(new Heart(e.clientX, e.clientY));
       }
+
       window.addEventListener("mousemove", onMove);
-      const hearts = [];
-      function render() {
-        requestAnimationFrame(render);
-        hearts.push(new Heart());
-        ctx.clearRect(0, 0, width, height);
+
+      let hearts = [];
+
+      function onResize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
       }
+
+      
     </script>
   </body>
 </html>

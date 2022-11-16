@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import "./App.less";
 function App() {
+  
   return (
     <div className="App">
-      <div className="box"></div>
-      <div className="box"></div>
-      <div className="box"></div>
+      <div className="content">
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+      </div>
     </div>
   );
 }
